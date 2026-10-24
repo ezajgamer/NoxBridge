@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <AssemblyName>NoxGame</AssemblyName>
+    <RootNamespace>NoxGame</RootNamespace>
+    <TargetFramework>net46</TargetFramework>
+    <LangVersion>12.0</LangVersion>
+    <Nullable>disable</Nullable>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <GenerateTargetFrameworkAttribute>false</GenerateTargetFrameworkAttribute>
+    <!-- ينبني على مكتبات .NET العامة بس — بدون ملفات اللعبة ولا Unity (أنواعها تنلقى وقت التشغيل،
+         Game.cs)، فالمشروع ينبني من الكود المنشور لحاله. net46: System.Net.Http فيه 4.0.0.0 مثل اللعبة
+         (net471+ صار 4.2 وما ينربط بمكتبة اللعبة). مكتبات النظام حق اللعبة مقصوصة: بعد أي
+         تعديل افحص بـtools\refcheck إن كل دالة نستخدمها موجودة فيها. -->
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.3" PrivateAssets="all" />
+    <Reference Include="System.Net.Http" />
+  </ItemGroup>
+</Project>
