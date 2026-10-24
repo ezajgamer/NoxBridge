@@ -19,3 +19,7 @@
 **English:** Arabic AI mod for *Scam With Your Friends*. Callers answer from your own Grok / ChatGPT subscription
 (OAuth device login, no API keys) or a local LM Studio model, with Arabic voice and 20 dialect callers.
 Download the zip below, run `NoxBridge.exe`, link your account, close the game and press "Reinstall".
+
+---
+
+Code signing: free code signing provided by [SignPath.io](https://about.signpath.io/), certificate by [SignPath Foundation](https://signpath.org/) — see the [code signing policy](https://github.com/ezajgamer/NoxBridge#code-signing-policy) and [privacy policy](https://github.com/ezajgamer/NoxBridge#privacy-policy).
