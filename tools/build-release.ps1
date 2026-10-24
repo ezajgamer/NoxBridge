@@ -28,8 +28,8 @@ if ($LASTEXITCODE) { throw 'فشل بناء المرقّع' }
 
 Write-Host '• البرنامج (PyInstaller)'
 if (-not (Test-Path (Join-Path $root 'app\nox.ico'))) { throw 'ناقص app\nox.ico — شغّل البرنامج مرة (يرسمها)' }
-# py (ويندوز) أو python (GitHub Actions)
-$python = if (Get-Command py -ErrorAction SilentlyContinue) { 'py' } else { 'python' }
+# GitHub Actions: python حق setup-python (py يختار أحدث نسخة بالجهاز). بالجهاز: py
+$python = if ($env:GITHUB_ACTIONS -or -not (Get-Command py -ErrorAction SilentlyContinue)) { 'python' } else { 'py' }
 & $python -m PyInstaller --noconfirm --clean --distpath $out --workpath $build (Join-Path $PSScriptRoot 'NoxBridge.spec')
 if ($LASTEXITCODE) { throw 'فشل PyInstaller' }
 Copy-Item (Join-Path $root 'docs\README-release.txt') (Join-Path $app 'README.txt')
