@@ -6,7 +6,14 @@
     <LangVersion>12.0</LangVersion>
     <Nullable>disable</Nullable>
     <ImplicitUsings>disable</ImplicitUsings>
-    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
+    <AssemblyTitle>NoxBridge game library</AssemblyTitle>
+    <!-- بيانات الملف (SignPath: اسم المنتج والإصدار نفسها بكل ملف بالبناء — الإصدار من build-release.ps1) -->
+    <Product>NoxBridge</Product>
+    <Company>ezajgamer</Company>
+    <Copyright>Copyright (c) 2026 ezajgamer — MIT</Copyright>
+    <Version>0.0.0</Version>
+    <IncludeSourceRevisionInInformationalVersion>false</IncludeSourceRevisionInInformationalVersion>
     <GenerateTargetFrameworkAttribute>false</GenerateTargetFrameworkAttribute>
     <!-- ينبني على مكتبات .NET العامة بس — بدون ملفات اللعبة ولا Unity (أنواعها تنلقى وقت التشغيل،
          Game.cs)، فالمشروع ينبني من الكود المنشور لحاله. net46: System.Net.Http فيه 4.0.0.0 مثل اللعبة

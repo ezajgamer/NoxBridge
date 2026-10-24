@@ -40,6 +40,24 @@ a = Analysis([os.path.join(APP, 'nox_app.pyw')], pathex=[APP], datas=datas, excl
 a.binaries = [b for b in a.binaries if keep(b[0])]
 a.datas = [b for b in a.datas if keep(b[0])]
 pyz = PYZ(a.pure)
+# بيانات الملف (اسم المنتج والإصدار — نفسها بالمرقّع وNoxGame)
+from PyInstaller.utils.win32.versioninfo import (VSVersionInfo, FixedFileInfo, StringFileInfo, StringTable,
+                                                 StringStruct, VarFileInfo, VarStruct)
+VERSION = os.environ.get('NOXBRIDGE_VERSION', '0.0.0')
+NUMS = tuple(int(n) for n in VERSION.split('.')) + (0,)
+version_info = VSVersionInfo(
+    ffi=FixedFileInfo(filevers=NUMS, prodvers=NUMS),
+    kids=[StringFileInfo([StringTable('040904B0', [
+        StringStruct('CompanyName', 'ezajgamer'),
+        StringStruct('FileDescription', 'NoxBridge'),
+        StringStruct('FileVersion', VERSION),
+        StringStruct('InternalName', 'NoxBridge'),
+        StringStruct('LegalCopyright', 'Copyright (c) 2026 ezajgamer - MIT'),
+        StringStruct('OriginalFilename', 'NoxBridge.exe'),
+        StringStruct('ProductName', 'NoxBridge'),
+        StringStruct('ProductVersion', VERSION)])]),
+        VarFileInfo([VarStruct('Translation', [1033, 1200])])])
+
 exe = EXE(pyz, a.scripts, [], exclude_binaries=True, name='NoxBridge', icon=os.path.join(APP, 'nox.ico'),
-          console=False, upx=False)
+          console=False, upx=False, version=version_info)
 coll = COLLECT(exe, a.binaries, a.datas, name='NoxBridge', upx=False)

@@ -7,6 +7,13 @@
     <Nullable>disable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <AssemblyName>NoxPatcher2</AssemblyName>
+    <AssemblyTitle>NoxBridge patcher</AssemblyTitle>
+    <!-- بيانات الملف (SignPath: اسم المنتج والإصدار نفسها بكل ملف بالبناء — الإصدار من build-release.ps1) -->
+    <Product>NoxBridge</Product>
+    <Company>ezajgamer</Company>
+    <Copyright>Copyright (c) 2026 ezajgamer — MIT</Copyright>
+    <Version>0.0.0</Version>
+    <IncludeSourceRevisionInInformationalVersion>false</IncludeSourceRevisionInInformationalVersion>
     <GenerateDocumentationFile>false</GenerateDocumentationFile>
     <AppendTargetFrameworkToOutputPath>true</AppendTargetFrameworkToOutputPath>
   </PropertyGroup>

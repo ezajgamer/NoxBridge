@@ -57,6 +57,33 @@ powershell -ExecutionPolicy Bypass -File tools\build-release.ps1
 | `data/` | `nox-callers.json` — الشخصيات (يولّدها `tools/make_callers.py`) |
 | `tools/` | البناء، والأيقونة، و`refcheck` (يفحص إن كل دالة يستخدمها `NoxGame` موجودة بمكتبات اللعبة) |
 
+## Code signing policy
+
+Free code signing provided by [SignPath.io](https://about.signpath.io/), certificate by
+[SignPath Foundation](https://signpath.org/).
+
+- Committers and reviewers: [ezajgamer](https://github.com/ezajgamer)
+- Approvers: [ezajgamer](https://github.com/ezajgamer)
+
+Release binaries (`NoxBridge.exe`, `NoxPatcher2.exe`, `NoxGame.dll`) are built by
+[GitHub Actions](.github/workflows/build.yml) from this repository only; each signing request is approved
+by an approver.
+
+## Privacy policy
+
+This program will not transfer any information to other networked systems unless specifically requested by
+the user or the person installing or operating it:
+
+- The app talks to the game on this computer only (`127.0.0.1`).
+- When the user links an account, the conversation, voice text and screen text the game sends are forwarded
+  to the provider the user chose (xAI for Grok, OpenAI for ChatGPT) under the user's own account, or to the
+  user's local LM Studio server. Nothing is sent to the authors of NoxBridge.
+- Login tokens are stored in the `Save` folder next to the app and are only sent to the provider that issued them.
+
+**Install / uninstall:** «إعادة التركيب» (Reinstall) patches the game from local backups and changes the
+game's AI / speech options and call queue; «رجّع اللعبة أصلية» (Restore game) undoes all of it. Deleting the
+NoxBridge folder removes the app.
+
 ## الرخصة
 
 [MIT](LICENSE)

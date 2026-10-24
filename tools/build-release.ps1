@@ -1,7 +1,7 @@
 ﻿# يبني نسخة NoxBridge 2 للنشر: release\NoxBridge\ (NoxBridge.exe + _internal) + release\NoxBridge-<الإصدار>.zip
 # ما تحتاج بايثون ولا .NET عند اللي ينزّلها (المرقّع على .NET Framework اللي بويندوز أصلاً).
 # الاستخدام: powershell -ExecutionPolicy Bypass -File tools\build-release.ps1 [-Version 2.0]
-param([string]$Version = "2.0")
+param([string]$Version = "2.0.0")
 $ErrorActionPreference = 'Stop'
 $root = Split-Path $PSScriptRoot -Parent
 $out = Join-Path $root 'release'
@@ -18,12 +18,16 @@ if (Test-Path $save) {
 if (Test-Path $app) { [IO.Directory]::Delete($app, $true) }
 New-Item -ItemType Directory -Force $out, $build | Out-Null
 
+# رقم الإصدار بالملفات (v2.0.0 ← 2.0.0؛ dev ← 0.0.0) — نفسه بالثلاثة
+$fileVersion = if ($Version -match '^v?(\d+\.\d+\.\d+)') { $Matches[1] } else { '0.0.0' }
+$env:NOXBRIDGE_VERSION = $fileVersion
+
 Write-Host '• مكتبة اللعبة (NoxGame.dll)'
-dotnet build (Join-Path $root 'game\NoxGame.csproj') -c Release -nologo -v q
+dotnet build (Join-Path $root 'game\NoxGame.csproj') -c Release -nologo -v q "-p:Version=$fileVersion"
 if ($LASTEXITCODE) { throw 'فشل بناء NoxGame' }
 
 Write-Host '• المرقّع (NoxPatcher2)'
-dotnet build (Join-Path $root 'patcher\NoxPatcher2.csproj') -c Release -nologo -v q
+dotnet build (Join-Path $root 'patcher\NoxPatcher2.csproj') -c Release -nologo -v q "-p:Version=$fileVersion"
 if ($LASTEXITCODE) { throw 'فشل بناء المرقّع' }
 
 Write-Host '• البرنامج (PyInstaller)'
